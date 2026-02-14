@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список вакансий</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+
+        <div class="Menu">
+
+            <div class="Menu_img">
+                <img class="logo" src="" alt="">
+            </div>
+            
+            <ul>
+                <li class="Menu_lisk"><a class="Menu_lisk_link" href="#"><b>Создать резюме</b></a></li>
+                <li class="Menu_lisk"><a class="Menu_lisk_link" href="#"><b>Войти</b></a></li>
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class="Wrapper">
+
+        <input class="Wrapper__input" type="search" name="q" placeholder="Профессия, должность" required>
+        <button class="Wrapper__btn" type="submit" id="btn_search">Найти</button>
+    
+    </div>
+
+    <main class="Content">
+
+        <aside class="Content_menu">
+            <p class="Content_menu_filter"><b>Фильтры</b></p>
+        
+            <div class="Content_menu_filter_part">
+                <form id="forma_part">
+                    <label for="part">Регион:</label>
+                    <select id="part" name="user_part">
+                        <option disabled value="" selected>Не выбрано</option>
+                        <option value="moscow">Москва</option>
+                        <option value="st_petersburg">Санкт-Петербург</option>
+                        <option value="novgorod">Новгород</option>
+                        <option value="Tula">Тула</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="Content_menu_filter_type_of_employment">
+                <form id="forma_type_of_employment">
+                    <label for="type_of_employment">Тип занятости:</label>
+                    <select id="type_of_employment" name="user_type_of_employment">
+                        <option disabled value="" selected>Не выбрано</option>
+                        <option value="full_employment">Полная</option>
+                        <option value="part_time">Частичная</option>
+                        <option value="remote_employment">Удаленная</option>
+                        <option value="work_experience">Стажировка</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="Content_menu_filter_wage">
+                <form id="forma_wage">
+                    <label for="wage">Зарплата:</label>
+                    <input class="min_wige" type="number" placeholder="От">
+                    <input class="max_wige" type="number" placeholder="До">
+                </form>
+            </div>
+
+            <div class="Content_menu_filter_experience">
+                <form id="forma_experience">
+                    <label for="experience">Опыт работы:</label>
+                    <select id="experience" name="user_experience">
+                        <option disabled value="" selected>Не выбрано</option>
+                        <option value="full_employment">Без опыта</option>
+                        <option value="part_time">От 1-3 лет</option>
+                        <option value="remote_employment">От 3-5 лет</option>
+                        <option value="work_experience">От 5 лет</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="btn_box_forms">
+                <button class="btn_forms" id="SubmitAll">Применить</button>
+            </div>
+
+        </aside>
+        
+
+        <section class="Vacancys">
+            <div class="Vacancys_list">
+
+                <div class="Vacancy">
+                                       
+                    <div class="Vacancy_name">
+                        <a class="Vacancy_name_link" href="#">Стажер-разработчик Fullstack</a>
+                    </div>
+
+                    <div class="Vacancy_maney">
+                        <p class="Vacancy_maney_p">от 36 000 р за месяц</p>
+                    </div>
+
+                    <div class="Vacancy_locate">
+                        <p class="Vacancy_locate_p">Москва</p>
+                    </div>
+
+                    <div class="Vacancy_type_of_employment">
+                        <p class="Vacancy_type_of_employment_p">Полная занятость</p>
+                    </div>
+
+                    <div class="Vacancy_experience">
+                        <p class="Vacancy_experience_p">От 1 года</p>
+                    </div>
+
+                    <div class="Vacancy_Description">
+                        <p class="Vacancy_Description_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quis, architecto eligendi maiores reprehenderit vitae vel ab sequi natus cum numquam alias aperiam eveniet porro velit neque eius laboriosam impedit!</p>
+                    </div>
+
+                    <div class="Vacancy_buttons">
+                        <button class="btn_feedback" id="btn_feedback">Откликнуться</button>
+                        <button class="btn_detailied" id="btn_detailied">Подбробнее...</button>
+                    </div>
+
+                </div>
+
+                <div class="Vacancy">
+                    
+                    <div class="Vacancy_name">
+                        <a class="Vacancy_name_link" href="#">Стажер-разработчик Fullstack</a>
+                    </div>
+
+                    <div class="Vacancy_maney">
+                        <p class="Vacancy_maney_p">от 36 000 р за месяц</p>
+                    </div>
+
+                    <div class="Vacancy_locate">
+                        <p class="Vacancy_locate_p">Москва</p>
+                    </div>
+
+                    <div class="Vacancy_type_of_employment">
+                        <p class="Vacancy_type_of_employment_p">Полная занятость</p>
+                    </div>
+
+                    <div class="Vacancy_experience">
+                        <p class="Vacancy_experience_p">От 1 года</p>
+                    </div>
+
+                    <div class="Vacancy_Description">
+                        <p class="Vacancy_Description_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quis, architecto eligendi maiores reprehenderit vitae vel ab sequi natus cum numquam alias aperiam eveniet porro velit neque eius laboriosam impedit!</p>
+                    </div>
+
+                    <div class="Vacancy_buttons">
+                        <button class="btn_feedback">Откликнуться</button>
+                        <button class="btn_detailied">Подбробнее...</button>
+                    </div>
+
+                </div>
+
+                <div class="Vacancy">
+                                 
+                    <div class="Vacancy_name">
+                        <a class="Vacancy_name_link" href="#">Стажер-разработчик Fullstack</a>
+                    </div>
+
+                    <div class="Vacancy_maney">
+                        <p class="Vacancy_maney_p">от 36 000 р за месяц</p>
+                    </div>
+
+                    <div class="Vacancy_locate">
+                        <p class="Vacancy_locate_p">Москва</p>
+                    </div>
+
+                    <div class="Vacancy_type_of_employment">
+                        <p class="Vacancy_type_of_employment_p">Полная занятость</p>
+                    </div>
+
+                    <div class="Vacancy_experience">
+                        <p class="Vacancy_experience_p">От 1 года</p>
+                    </div>
+
+                    <div class="Vacancy_Description">
+                        <p class="Vacancy_Description_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quis, architecto eligendi maiores reprehenderit vitae vel ab sequi natus cum numquam alias aperiam eveniet porro velit neque eius laboriosam impedit!</p>
+                    </div>
+
+                    <div class="Vacancy_buttons">
+                        <button class="btn_feedback">Откликнуться</button>
+                        <button class="btn_detailied">Подбробнее...</button>
+                    </div>
+
+                </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        футер
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
