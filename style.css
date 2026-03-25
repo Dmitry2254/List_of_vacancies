@@ -165,7 +165,7 @@ input::-webkit-inner-spin-button {
     
 }
 
-.btn_feedback, .btn_detailied {
+.btn_feedback, .btn_detailied, .btn_delete {
     padding: 15px 40px;
     font-size: 15px;
     border-radius: 5px;
