@@ -723,3 +723,324 @@ btnStats.addEventListener('click', () => {
     wrapperElement.appendChild(messageTextElement);
     console.log('Сработала кнопка "Показать статистику"')
 });
+
+
+/* 
+Лабораторная работа №4
+Блок А - регулярные выражения: проверка формата
+Задача А1
+Создать функцию isValidDateYMD(s), которая:
+Принимает строку s
+проверяет формат строго YYYY-MM-DD с помощью RegExp
+возвращает true/false
+продемотрировать 3 теста: Корректный формат, неверный формат, пустая строка
+*/
+function isValidDateYMD(s) {
+    const validDate = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/
+    return validDate.test(s)
+}
+console.log(`Корректный формат (2026-03-31): ${isValidDateYMD("2026-03-31")}`) 
+console.log(`Неверный формат (2222-22-22): ${isValidDateYMD("2222-22-22")}`) 
+console.log(`Пустой формат строки: ${isValidDateYMD("")}`)
+/* 
+Задача А2
+Создать функцию isValidTitle(s), которая 
+Принимает строку s 
+Запрещается ввод "Служебных" символов: <,>,{,},;
+Использует RegExp и возвращает true/false
+Продемонстрировать 3 теста: обычная строка, строка с <, строка с ;
+*/
+function isValidTitle (s) {
+    const validTitle = /[\u003c\u003e\u007b\u007d\u003b]/
+    return !validTitle.test(s)
+}
+console.log(`обычная строка: ${isValidTitle('обычная строка')}`)
+console.log(`строка с <: ${isValidTitle('строка с <')}`)
+console.log(`строка с ;: ${isValidTitle('строка с ;')}`)
+/* 
+Блок В - регулярные выражения: извлечение и нормализация
+Задача В1
+Создать функцию extractIds(text), которая:
+Принимает строку text
+Извлекает все числа из строки с помощью match(/\d+/g)
+Возвращает массив числе (не строк)
+Продемонстрировать на строке: id=5, id=12, id=30
+*/
+function extractIds(text) {
+  const matches = text.match(/\d+/g)
+  if (!matches) {
+    return []
+  }
+  return matches.map(Number)
+}
+const inputString = "id=5, id=12, id=30"
+const results = extractIds(inputString)
+console.log(results)
+/* 
+Задача В2
+Создать функцию normalizeSpaces(s), которая:
+Заменяет любые последовательности пробельных символов на один пробел
+Обрезает пробелы по краям
+Использует replace(/\s+/g, "")
+Продемонстрировать на строке " A B\t\tC "
+*/
+function normalizeSpaces(s) {
+  return s.trim().replace(/\s+/g, " ")
+}
+console.log(`Демонтрация на строке " A B\t\tC ": ${normalizeSpaces("  A   B\t\tC  ")}`)
+/* 
+Блок C — формы и валидация: модель ошибок
+Задача C1. 
+Создать функцию validateRequired(value, fieldName), которая:
+принимает value (строка) и fieldName (строка);
+возвращает null, если значение непустое после trim();
+возвращает строку ошибки вида: "Поле <fieldName> обязательно" — если пустое;
+продемонстрировать на пустой строке и на строке " ok "
+*/
+function validateRequired(value, fieldName) {
+  if (value.trim().length > 0) {
+    return null
+  }
+  return `Поле ${fieldName} обязательно`
+}
+console.log(validateRequired("  ", "Имя"))
+console.log(validateRequired(" ok ", "Имя"))
+/* 
+Задача C2. 
+Создать функцию validateNumberRange(n, min, max, fieldName), которая:
+принимает число n, границы min/max, имя поля;
+возвращает null, если n — число и в диапазоне;
+возвращает строку ошибки, если n не число (NaN) или вне диапазона;
+продемонстрировать на значениях 10, -1, NaN.
+*/
+function validateNumberRange(n, min, max, fieldName) {
+  if (typeof n !== 'number' || isNaN(n) || n < min || n > max) {
+    return `Поле ${fieldName} должно быть числом от ${min} до ${max}`
+  }
+  return null
+}
+console.log(validateNumberRange(10, 0, 100, "Возраст"))  
+console.log(validateNumberRange(-1, 0, 100, "Возраст"))   
+console.log(validateNumberRange(NaN, 0, 100, "Возраст"))
+/* 
+Блок D — функции обработки данных: чистые функции
+Задача D1. 
+Создать функцию buildRecordFromForm(raw), которая:
+принимает объект “сырого ввода” raw вида: { title: string, value: string, status: string, createdAt: string }
+нормализует title через normalizeSpaces(...);
+преобразует value в число;
+возвращает новый объект записи без id (id будет назначаться отдельно);
+продемонстрировать в консоли, что value стал числом, а title нормализован.
+*/
+// Используем функцию из предыдущего шага
+function normalizeSpaces(s) {
+  return s.trim().replace(/\s+/g, " ")
+}
+function buildRecordFromForm(raw) {
+  return {
+    title: normalizeSpaces(raw.title),
+    value: Number(raw.value),
+    status: raw.status,
+    createdAt: raw.createdAt
+  }
+}
+const rawInput = {
+  title: "  Новая    запись\tтест  ",
+  value: "150",
+  status: "active",
+  createdAt: "2026-03-31"
+}
+const records = buildRecordFromForm(rawInput)
+console.log(records)
+console.log(typeof records.value)
+/* 
+Задача D2. 
+Создать функцию collectErrors(record), которая:
+принимает объект записи (уже после преобразований);
+использует функции из блоков A/C для проверок;
+возвращает массив строк ошибок (пустой массив, если ошибок нет);
+продемонстрировать минимум 2 кейса: валидный объект и объект с ошибками.
+*/
+// Вспомогательные функции из блоков A и C
+function validateRequired(value, fieldName) {
+  return (value && value.trim().length > 0) ? null : `Поле ${fieldName} обязательно`
+}
+function validateNumberRange(n, min, max, fieldName) {
+  if (typeof n !== 'number' || isNaN(n) || n < min || n > max) {
+    return `Поле ${fieldName} должно быть числом от ${min} до ${max}`
+  }
+  return null
+}
+function collectErrors(record) {
+  const errors = []
+  const titleError = validateRequired(record.title, "Заголовок")
+  if (titleError) errors.push(titleError)
+  const valueError = validateNumberRange(record.value, 1, 1000, "Значение")
+  if (valueError) errors.push(valueError)
+  return errors
+}
+const validRecord = { title: "Продажи", value: 500 }
+console.log("Кейс 1 (валидный):", collectErrors(validRecord))
+const invalidRecord = { title: "  ", value: -10 }
+console.log("Кейс 2 (ошибки):", collectErrors(invalidRecord))
+/* 
+Блок E — асинхронность: Promise и async/await (2 задачи)
+Задача E1. 
+Создать функцию delay(ms), которая:
+возвращает Promise, выполняющийся через ms миллисекунд;
+продемонстрировать, что код “ждёт” через await delay(500) и затем печатает в консоль "done".
+*/
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+async function run() {
+  console.log("start")
+  await delay(500)
+  console.log("done")
+}
+run()
+/* 
+Задача E2. 
+Создать async функцию safeFetchJson(url) (по образцу из теории), которая:
+возвращает объект { ok: true, data } или { ok: false, error, details };
+продемонстрировать вызов на тестовом URL (любой публичный JSON) или на заведомо некорректном URL (чтобы показать обработку ошибки);
+вывести результат в консоль.
+*/
+async function safeFetchJson(url) {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      return {
+        ok: false,
+        error: "Ошибка HTTP",
+        details: `Статус: ${response.status} ${response.statusText}`
+      };
+    }
+    const data = await response.json()
+    return { ok: true, data }
+  } catch (err) {
+    return {
+      ok: false,
+      error: "Ошибка выполнения запроса",
+      details: err.message
+    }
+  }
+}
+async function runDemo() {
+  console.log("Запрос 1 (Успех):")
+  const success = await safeFetchJson('https://www.weatherapi.com/')
+  console.log(success)
+  console.log("Запрос 2 (Ошибка):")
+  const failure = await safeFetchJson('https://gerasimovdima.com')
+  console.log(failure)
+}
+runDemo()
+/* 
+Блок F — обработка JSON и контроль ошибок
+Задача F1. 
+Создать функцию tryParseJson(text), которая:
+принимает строку text;
+возвращает { ok: true, data }, если JSON.parse успешен;
+возвращает { ok: false, error }, если парсинг не удался;
+продемонстрировать на корректном JSON ('{"a":1}') и некорректном ('{a:1}').
+*/
+function tryParseJson(text) {
+  try {
+    const data = JSON.parse(text)
+    return { ok: true, data }
+  } catch (error) {
+    return { ok: false, error: error.message }
+  }
+}
+const validResult = tryParseJson('{"a":1}')
+console.log('Успешный парсинг:', validResult)
+const invalidResult = tryParseJson('{a:1}')
+console.log('Ошибка парсинга:', invalidResult)
+/* 
+Задача F2. 
+Создать функцию normalizeApiValue(x), которая:
+принимает значение x (может быть строкой, числом, null);
+возвращает число:
+если x — число → вернуть его;
+если x — строка с числом → преобразовать;
+иначе → вернуть 0;
+продемонстрировать на 10, "20", null, "abc".
+*/
+function normalizeApiValue(x) {
+  if (typeof x === 'number' && !isNaN(x)) {
+    return x
+  }
+  const parsed = parseFloat(x)
+  return isNaN(parsed) ? 0 : parsed
+}
+console.log(`Число: ${normalizeApiValue(10)}`)
+console.log(`Строка 20: ${normalizeApiValue("20")}`)
+console.log(`Null: ${normalizeApiValue(null)}`)
+console.log(`Строка abc: ${normalizeApiValue("abc")}`)
+
+/* 
+Предметная область ЛР№4
+*/
+
+const form = document.getElementById('recordForm')
+const errorContainer = document.getElementById('formErrors')
+const message = document.getElementById('message')
+const btnJSON = document.getElementById('btnJSON')
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    errorContainer.innerHTML = ''
+    message.textContent = ''
+
+    const data = {
+        title: document.getElementById('titleInput').value.trim().replace(/\s+/g, ' '),
+        salary: Number(document.getElementById('salaryInput').value),
+        city: document.getElementById('cityInput').value.trim(),
+        employment: document.getElementById('employment').value,
+        experience: document.getElementById('experience').value,
+        description: document.getElementById('descriptionInput').value.trim(),
+        createdAt: document.getElementById('createdAtInput').value.trim()
+    }
+
+    const errors = validateVacancy(data)
+
+    if (errors.length) {
+        errors.forEach(err => {
+            const p = document.createElement('p')
+            p.textContent = err
+            errorContainer.appendChild(p)
+        })
+        message.textContent = 'Исправь ошибки в форме'
+        return
+    }
+
+    addVacancy(vacancys, data)
+
+    form.reset()
+    message.textContent = 'Успешно сохранено'
+})
+
+btnJSON.addEventListener('click', async () => {
+    message.textContent = 'Загрузка'
+
+    try {
+        const data = await loadVacancies()
+
+        data.forEach(item => {
+        if (vacancys.length > 0) {
+            const maxId = Math.max(...vacancys.map(v => v.id))
+            item.id = maxId + 1
+        } else {
+            item.id = 1
+        }
+
+        vacancys.push(item)
+        })
+
+        message.textContent = 'JSON успешно загружен!'
+
+    } catch (err) {
+        message.textContent = 'Ошибка в загрузке JSON'
+    }
+})

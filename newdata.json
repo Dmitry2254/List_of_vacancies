@@ -1,0 +1,92 @@
+[
+    {
+        "title": "Разработчик JS", 
+        "salary": 10000, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "разработчик Fullstack", 
+        "salary": 136000, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "Стажер-разработчик", 
+        "salary": 365000, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "Стажер HTML, CSS", 
+        "salary": 3000, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "Разработчик на GO", 
+        "salary": 80000, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "Разработчик REACT", 
+        "salary": 36000, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "Стажер С++", 
+        "salary": 200, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "Стажер python", 
+        "salary": 100, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    },
+    {
+        "title": "Стажер java", 
+        "salary": 2000, 
+        "employment": "Полная занятость", 
+        "experience": "От 1-3 лет", 
+        "city":"Москва",
+        "description": "Данные из файла json.", 
+        "status": "new", 
+        "createdAt": "2026-04-11"
+    }
+]
